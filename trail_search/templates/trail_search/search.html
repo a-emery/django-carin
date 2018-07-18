@@ -8,6 +8,24 @@
 
 {% block content %}
     <div class="trail-search-container">
+        <form action="" class="trail-search-form-container">{% csrf_token %}
+            <div class="trail-search-form">
+                <h1 style="margin: 0">Find a Trail</h1>
+                <div style="margin-top: 20px; width: 100%">
+                    <div class="search-label-container">
+                        <p>City:</p>
+                    </div><div class="search-input-container">
+                        <input type="text" placeholder="city" class="search-input">
+                    </div>
+                    <div class="search-label-container">
+                        <p>State:</p>
+                    </div><div class="search-input-container">
+                        <select name="" id="" class="search-input select-input">
 
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 {% endblock %}
