@@ -1,0 +1,26 @@
+# Virtualenvs
+venv/
+*/celerybeat-schedule
+# React files
+admin_app/static/js/bundles/
+admin_app/static/js/webpack-stats.json
+
+# Python compiled files
+*.pyc
+*.DS_Store
+*__pycache__/
+
+# pycharm idea file
+.idea/
+
+# vscode
+.vscode/
+
+admin_app/db_dumps/*.sql
+
+.direnv/
+.envrc
+*.sqlite3
+# pytest stuff
+.cache/
+staticfiles/
