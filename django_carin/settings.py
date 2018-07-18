@@ -26,7 +26,7 @@ SECRET_KEY = 'osipo%&f#!kj+f1l+kszw6e++9md&dg8yg+sx+ess5n^$!qg%-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['herokudjangoapp.herokuapp.com']
+ALLOWED_HOSTS = ['django-carin.herokuapp.com']
 
 
 # Application definition
