@@ -26,7 +26,7 @@ SECRET_KEY = 'osipo%&f#!kj+f1l+kszw6e++9md&dg8yg+sx+ess5n^$!qg%-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-carin.herokuapp.com']
+ALLOWED_HOSTS = ['django-carin.herokuapp.com', 'localhost']
 
 
 # Application definition
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'authentication',
+    'trail_search',
 ]
 
 MIDDLEWARE = [
@@ -52,12 +53,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'django_carin.urls'
+ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['core/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'django_carin.wsgi.application'
+WSGI_APPLICATION = 'core.wsgi.application'
 
 
 # Database

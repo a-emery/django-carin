@@ -1,1 +1,1 @@
-web: gunicorn django_carin.wsgi --log-file -
+web: gunicorn core.wsgi --log-file -
