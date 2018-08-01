@@ -1,5 +1,7 @@
 {% extends 'header.html' %}
 
+{% load core_app_tags %}
+
 {% load staticfiles %}
 
 {% block css %}{{ block.super }}
@@ -8,24 +10,28 @@
 
 {% block content %}
     <div class="trail-search-container">
-        <form action="" class="trail-search-form-container">{% csrf_token %}
+        <form action="" method="get" class="trail-search-form-container">
             <div class="trail-search-form">
                 <h1 style="margin: 0">Find a Trail</h1>
                 <div style="margin-top: 20px; width: 100%">
-                    <div class="search-label-container">
-                        <p>City:</p>
-                    </div><div class="search-input-container">
-                        <input type="text" placeholder="city" class="search-input">
-                    </div>
-                    <div class="search-label-container">
-                        <p>State:</p>
-                    </div><div class="search-input-container">
-                        <select name="" id="" class="search-input select-input">
-
-                        </select>
+                    {% for field in form %}
+                        <div class="search-label-container">
+                            <p>{{ field.label }}</p>
+                        </div><div class="search-input-container">
+                            {{ field }}
+                        </div>
+                    {% endfor %}
+                    <div class="search-submit-button-container">
+                        <input name="search" class="search-submit-button" type="submit" value="Search" />
+                        <input name="around_me" type="submit" class="search-submit-button" value="Trails Around Me" />
                     </div>
                 </div>
             </div>
         </form>
     </div>
+    {% if places|length %}
+        {% for place in places %}
+            {{ place.name }}
+        {% endfor %}
+    {% endif %}
 {% endblock %}

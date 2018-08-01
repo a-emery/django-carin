@@ -7,5 +7,6 @@ from . import views
 app_name = 'trail_search'
 
 urlpatterns = [
-    path('', views.TrailSearch.as_view(), name='dashboard'),
+    path('', views.TrailSearch.as_view(), name='search'),
+    path('search', views.TrailResults.as_view(), name='results'),
 ]
