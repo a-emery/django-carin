@@ -49,12 +49,35 @@
 {% block javascript %}{{ block.super }}
     <script>
         $(document).ready(function() {
+            var lat_coord;
+            var lon_coord;
             var places = "{{ places|escapejs }}";
             if ( places.length ) {
                 document.getElementById("results").scrollIntoView();
             }
             $('.search-submit-button').click(function(e){
                 $(e.target).html('Loading...');
+            });
+            function getCoords() {
+                function success(position) {
+                    var crds = position.coords;
+                    lat_coord = crds.latitude;
+                    lon_coord = crds.longitude;
+                    var lat = $('<input>').attr("name", 'lat').attr("type", "hidden").val(lat_coord);
+                    var lon = $('<input>').attr("name", 'lon').attr("type", "hidden").val(lon_coord);
+                    $('form').append($(lat), $(lon));
+                    $('button[value="around_me"]').click();
+                }
+                navigator.geolocation.getCurrentPosition(success);
+            }
+            $('form').submit(function(e) {
+                var val = $("button[type=submit]:focus").val();
+                if ( val === 'around_me' && ( !lat_coord || !lon_coord ) ) {
+                    e.preventDefault();
+                    getCoords();
+                    return false;
+                }
+                return true;
             })
         })
     </script>
