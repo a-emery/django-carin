@@ -22,16 +22,40 @@
                         </div>
                     {% endfor %}
                     <div class="search-submit-button-container">
-                        <input name="search" class="search-submit-button" type="submit" value="Search" />
-                        <input name="around_me" type="submit" class="search-submit-button" value="Trails Around Me" />
+                        <button name="search" class="search-submit-button" type="submit" value="search">Search</button>
+                        <button name="search" class="search-submit-button" type="submit" value="around_me">Trails Around Me</button>
                     </div>
                 </div>
             </div>
         </form>
     </div>
     {% if places|length %}
-        {% for place in places %}
-            {{ place.name }}
-        {% endfor %}
+        <div class="search-results-container" id="results">
+          <h3>Search Results:</h3>
+            {% for place in places %}
+                <a href="">
+                    <div class="search-result-trail-container">
+                        <div>
+                            <h3 class="indexTrailHeader">{{ forloop.counter }}. {{ place.name }}</h3>
+                            <p>{{ place.city }}, {{ place.state }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
     {% endif %}
+{% endblock %}
+
+{% block javascript %}{{ block.super }}
+    <script>
+        $(document).ready(function() {
+            var places = "{{ places|escapejs }}";
+            if ( places.length ) {
+                document.getElementById("results").scrollIntoView();
+            }
+            $('.search-submit-button').click(function(e){
+                $(e.target).html('Loading...');
+            })
+        })
+    </script>
 {% endblock %}

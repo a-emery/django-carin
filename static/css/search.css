@@ -55,3 +55,15 @@
 .search-submit-button:focus {
   outline: 0;
 }
+.search-result-trail-container {
+  margin: 10px 0;
+  border-top: 1px solid #cccccc;
+  padding: 5px;
+  text-align: left;
+  position: relative;
+}
+.search-results-container {
+  margin: 0 8.33%;
+  padding-top: 50px;
+  min-height: 100vh;
+}

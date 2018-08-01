@@ -13,14 +13,14 @@ class SearchView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data()
-        if 'around_me' in self.request.GET or 'search' in self.request.GET:
+        if 'search' in self.request.GET:
             city = self.request.GET['city'] if 'city' in self.request.GET else ''
             state = self.request.GET['state'] if 'state' in self.request.GET else ''
             endpoint = f'https://trailapi-trailapi.p.mashape.com/?q[activities_activity_type_name_eq]=mountain+biking&q[city_cont]={city}&q[state_cont]={state}'
             s = requests.Session()
             s.headers.update({'Accept': 'text/plain', 'X-Mashape-Key': '54lXQ1oTXHmshd3CW3lqEEaJaIt4p1lmHYDjsncC76WrSHS0mp'})
             r = s.get(endpoint)
-            places = r.content.decode('utf8').replace("'", '"')
+            places = r.content.decode('utf8')
             data = json.loads(places)['places']
             context['city'] = city
             context['state'] = state
