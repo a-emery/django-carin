@@ -48,8 +48,3 @@ class SearchView(FormView):
 
 class TrailSearch(SearchView):
     template_name = 'trail_search/search.html'
-
-
-class TrailResults(SearchView):
-    template_name = 'trail_search/results.html'
-

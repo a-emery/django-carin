@@ -1,0 +1,36 @@
+{% extends 'header.html' %}
+
+{% load core_app_tags %}
+
+{% load staticfiles %}
+
+{% block css %}{{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" type="text/css">
+{% endblock %}
+
+{% block content %}
+    <div class="login-container clearfix">
+        <form class="login-form" name="login-form" method="post" action="{% url 'authentication:login' %}">{% csrf_token %}
+            <h1>Login</h1>
+            {% if form.non_field_errors %}
+                <ul class='form-errors center-align phm'>
+                    {% for error in form.non_field_errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% elif form.errors %}
+                <ul class='form-errors center-align phm'>
+                    {% for error in form.errors %}
+                        <li>No {{ error }} entered.</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            <input class="login-form-input" type="text" name="username" id="email-label" placeholder="email" />
+            <input class="login-form-input" type="password" name="password" id="password-label" placeholder="password" />
+            <div class="login-form-action-container clearfix">
+                <input type="submit" name="loginForm" class="login-submit-button" value="Login"/>
+                <p class="login-register">Not a user? <a href="{% url 'authentication:register' %}">Sign up now</a></p>
+            </div>
+        </form>
+    </div>
+{% endblock %}
