@@ -29,19 +29,25 @@
             </div>
         </form>
     </div>
-    {% if places|length %}
+    {% if places != None %}
         <div class="search-results-container" id="results">
           <h3>Search Results:</h3>
-            {% for place in places %}
-                <a href="">
-                    <div class="search-result-trail-container">
-                        <div>
-                            <h3 class="indexTrailHeader">{{ forloop.counter }}. {{ place.name }}</h3>
-                            <p>{{ place.city }}, {{ place.state }}</p>
+            {% if places|length %}
+                {% for place in places %}
+                    <a href="">
+                        <div class="search-result-trail-container">
+                            <div>
+                                <h3 class="indexTrailHeader">{{ forloop.counter }}. {{ place.name }}</h3>
+                                <p>{{ place.city }}, {{ place.state }}</p>
+                            </div>
                         </div>
-                    </div>
-                </a>
-            {% endfor %}
+                    </a>
+                {% endfor %}
+            {% else %}
+                <div class="search-result-trail-container">
+                    <h3 style="color: #337AB7">No results found</h3>
+                </div>
+            {% endif %}
         </div>
     {% endif %}
 {% endblock %}
